@@ -1,23 +1,23 @@
 <template>
   <div class="indexColumns">
     <div class="columns" style="height:100%;">
-      <div class="column is-one-fifth is-offset-one-fifth">
+      <div :class="defineClass">
         <IndexCard
-          imageName="filial.jpeg"
+          imageName="branch.jpg"
           content="Filial"
           pathToRedirect="branch-office/list"
         />
       </div>
-      <div class="column is-one-fifth">
+      <div class="column is-one-fifth" v-if="hasBranch">
         <IndexCard
-          imageName="filial.jpeg"
+          imageName="computer.jpg"
           content="Computador"
           pathToRedirect="computer/list"
         />
       </div>
-      <div class="column is-one-fifth">
+      <div class="column is-one-fifth" v-if="hasBranch">
         <IndexCard
-          imageName="filial.jpeg"
+          imageName="air.jpg"
           content="Ar Condicionados"
           pathToRedirect="air-conditioner/list"
         />
@@ -25,6 +25,32 @@
     </div>
   </div>
 </template>
+
+<script>
+  export default {
+    data(){
+      return {
+        hasBranch: false
+      }
+    },
+    computed:{
+      defineClass(){
+        if(this.hasBranch){
+          return "column is-one-fifth is-offset-one-fifth"
+        }
+        return "column is-one-fifth is-offset-5"
+      }
+    },
+    asyncData({$getBranch}){
+      return $getBranch();
+    },
+    created(){
+      if(this.dataBranchOffice && !!this.dataBranchOffice.length){
+        this.hasBranch = true
+      }
+    }
+  }
+</script>
 
 <style scoped>
   .indexColumns {

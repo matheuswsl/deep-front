@@ -21,8 +21,25 @@ export default {
     async deleteRegistry(){
       console.log('entrei')
       const fullUrl = 'http://localhost:3000/'+this.url+'/'+this.id
-      await axios.delete(fullUrl);
-      this.$router.go(0);
+      await axios.delete(fullUrl)
+        .then(()=>{
+          this.$buefy.toast.open({
+            duration: 2000,
+            message: "Registro excluído com sucesso",
+            type: 'is-success'
+          })
+          var that = this
+          setTimeout(function(){
+            that.$router.go(0);
+          },1000);
+        })
+        .catch(()=>{
+          this.$buefy.toast.open({
+            duration: 2000,
+            message: "Não foi possível excluir o registro",
+            type: 'is-danger'
+          })
+        });
     }
   }
 }

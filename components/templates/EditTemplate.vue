@@ -57,12 +57,40 @@ export default {
   methods:{
     async createRegistry(){
       const fullUrl = this.baseUrl + this.url
-      await axios.post(fullUrl,this.data);
+      await axios.post(fullUrl,this.data)
+        .then(()=>{
+          this.$buefy.toast.open({
+            duration: 2000,
+            message: "Registro criado com sucesso",
+            type: 'is-success'
+          })
+        })
+        .catch(()=>{
+          this.$buefy.toast.open({
+            duration: 2000,
+            message: "Não foi possível criar um novo registro",
+            type: 'is-danger'
+          })
+        });
       this.$router.push(`/${this.url}/list`);
     },
     async updateRegistry(){
-      const fullUrl = this.baseUrl+this.url+'/'+this.data.id
-      await axios.put(fullUrl, this.data);
+      const fullUrl = this.baseUrl+this.url+'/'+this.data.id + 5
+      await axios.put(fullUrl, this.data)
+        .then(()=>{
+          this.$buefy.toast.open({
+            duration: 2000,
+            message: "Registro atualizado com sucesso",
+            type: 'is-success'
+          })
+        })
+        .catch(()=>{
+          this.$buefy.toast.open({
+            duration: 2000,
+            message: "Não foi possível atualizar o registro",
+            type: 'is-danger'
+          })
+        });
       this.$router.push(`/${this.url}/list`);
     },
     async saveButton(){
