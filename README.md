@@ -1,69 +1,87 @@
-# deep-front
+# DeepESG Teste
 
-## Build Setup
+## Descrição
+
+Esse repositório contém o sistema de front resposável pelas operações CRUD das entidades filial (branchOffice), computador (computer) e ar condicionado (airConditioner).
+
+## Instalação
 
 ```bash
-# install dependencies
 $ yarn install
-
-# serve with hot reload at localhost:3000
-$ yarn dev
-
-# build for production and launch server
-$ yarn build
-$ yarn start
-
-# generate static project
-$ yarn generate
 ```
 
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
+## Rodando o aplicativo
 
-## Special Directories
+```bash
+# desenvolvimento
+$ yarn run start
 
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
+# desenvolvimento no modo 'watch'
+$ yarn run dev
 
-### `assets`
+# modo de produção
+$ yarn run start
+```
 
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
+## Usando a aplicação (Considerações)
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
+Como o cadastrado de uma filial é requerido para o cadastramento de um computador e de ares condicionados, quando não há filial cadastrada, a tela inicial mostra apenas o card 'Filial'. Após o cadastramento da primeira filial, os outros cards são apresentados.
 
-### `components`
+Para criar um novo cadastro, na tela de listagem, há um ícode de uma pasta com um pequeno mais, basta clicá-lo para o redirecionamento.
 
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
+## URL
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
+A entrada da aplicação é exposta na porta 3050.
 
-### `layouts`
+As rotas de edição e criação apresentam '/edit' na sua url. Enquanto que, as de listagem, apresentam '/list'.
 
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
+### Filial (branchOffice):
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
+```bash
+# Lista todos os registros das filiais
+- /branch-office/list
 
+# Cria uma nova filial
+- /branch-office/edit
 
-### `pages`
+# Atualiza uma filial com o id passado
+- /branch-office/edit
+Obs.: Na atualização, as informações são passadas como parâmetros queries.
 
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
+# Deleta uma filial 
+- Clicar no ícone de lixeira na listagem.
+```
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/get-started/routing).
+### Computador (computer):
 
-### `plugins`
+```bash
+# Lista todos os computadores cadastrados
+- /computador/list
 
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
+# Cria um novo computador
+- /computador/edit
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
+# Atulializa um computador com o id passado
+- /computador/edit
+Obs.: Na atualização, as informações são passadas como parâmetros queries.
 
-### `static`
+# Deleta uma computador 
+- Clicar no ícone de lixeira na listagem.
+```
 
-This directory contains your static files. Each file inside this directory is mapped to `/`.
+### Ar Condicionado (airConditioner):
 
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
+```bash
+# Lista todos os ares condicionados cadastrados
+- /air-conditioner/list
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
+# Cria um novo ar condicionado
+- /air-conditioner/edit
 
-### `store`
+# Atulializa uma ar condicionado com o id passado
+- /air-conditioner/edit
+Obs.: Na atualização, as informações são passadas como parâmetros queries.
 
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+# Deleta uma ar condicionado 
+- Clicar no ícone de lixeira na listagem.
+```
